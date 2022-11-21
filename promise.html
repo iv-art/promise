@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <p>Промисы разбираем</p>
+    <button class="b-1">Узнать, чему сейчас равно а</button>
+    <p></p>
+    <div class="out">Пока а равно 7</div>
+    <script>
+      "use strict";
+      let a = 7;
+      console.log(a);
+      let b = new Promise(function (resolve, reject) {
+        // эта функция выполнится автоматически, при вызове new Promise
+        resolve(
+          setTimeout(function () {
+            a = 99;
+          }, 2000)
+        );
+      });
+
+      console.log(b);
+
+      setTimeout(() => console.log(b), 3000);
+
+      document.querySelector(".b-1").onclick = function () {
+        console.log(a);
+      };
+      b.then(function () {
+        document.querySelector(".out").innerText = `А сейчас а стало ${a}`;
+      });
+    </script>
+  </body>
+</html>
